@@ -1,0 +1,87 @@
+
+{% extends "layout.html" %}
+
+{% from "back-link/macro.njk" import govukBackLink %}
+{% from "radios/macro.njk" import govukRadios %}
+{% from "button/macro.njk" import govukButton %}
+{% from "fieldset/macro.njk" import govukFieldset %}
+{% from "details/macro.njk" import govukDetails %}
+
+{% block pageTitle %}
+  GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "/"
+}) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/summary" method="post">
+
+        {% call govukFieldset({
+          legend: {
+            text: "How can we send you your licence details?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        }) %}
+
+        {% from "inset-text/macro.njk" import govukInsetText %}
+
+        {{ govukInsetText({
+          text: "We don’t send 1-day or 8-day licences in the post, but you must be able to produce your licence number when you go fishing."
+        }) }}
+
+        {{ govukRadios({
+          idPrefix: "licence-length",
+          name: "licence-length",
+          fieldset: {
+            legend: {
+              text: "Choose how we send you your licence details:"
+            }
+          },
+          items: [
+            {
+              value: "email",
+              text: "Email or text me my licence details"
+            },
+            {
+              value: "write-down",
+              text: "I will write down my licence number"
+            }
+          ]
+        }) }}
+
+        <p class="govuk-body">Read about <a href="#" class="govuk-link">how we use your personal information</a></p>
+
+
+        {% from "checkboxes/macro.njk" import govukCheckboxes %}
+
+        {{ govukCheckboxes({
+          idPrefix: "opt-in",
+          name: "opt-in",
+          items: [
+            {
+              value: "yes",
+              text: "Update me with the latest news on angling and fisheries and how you spend my licence money"
+            }
+          ]
+        }) }}
+
+        {% endcall %}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

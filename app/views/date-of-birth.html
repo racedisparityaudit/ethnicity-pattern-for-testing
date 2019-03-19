@@ -1,0 +1,49 @@
+
+{% extends "layout.html" %}
+
+{% from "back-link/macro.njk" import govukBackLink %}
+{% from "button/macro.njk" import govukButton %}
+{% from "input/macro.njk" import govukInput %}
+{% from "date-input/macro.njk" import govukDateInput %}
+
+{% block pageTitle %}
+  GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "/"
+}) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/address" method="post">
+
+        {{ govukDateInput({
+          id: "date-of-birth",
+          namePrefix: "date-of-birth",
+            fieldset: {
+              legend: {
+                text: "What's your date of birth?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+              }
+            },
+          hint: {
+            html: "<p class=\"govuk-body\">We use this information to find out if you're eligible for a senior or junior concession.</p><p class=\"govuk-hint\">For example, 23 3 1972</p>"
+          }
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,85 @@
+
+{% extends "layout.html" %}
+
+{% from "back-link/macro.njk" import govukBackLink %}
+{% from "radios/macro.njk" import govukRadios %}
+{% from "button/macro.njk" import govukButton %}
+{% from "fieldset/macro.njk" import govukFieldset %}
+{% from "details/macro.njk" import govukDetails %}
+
+{% block pageTitle %}
+  GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "/"
+}) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/contact" method="post">
+
+        {% call govukFieldset({
+          legend: {
+            text: "What type of fishing licence do you want?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        }) %}
+
+        {{ govukDetails({
+          summaryText: "Which fishing licence do I need?",
+          html: "<p>A trout and coarse licence allows you to fish for all freshwater fish, but not for salmon or sea trout.</p><p>A salmon and sea trout licence allows you to fish for salmon and sea trout as well as all freshwater fish included in the trout and coarse licence.</p>"
+        }) }}
+
+        {{ govukRadios({
+          idPrefix: "licence-length",
+          name: "licence-length",
+          items: [
+            {
+              value: "trout",
+              text: "Trout and coarse",
+              label: {
+                classes: "govuk-label--s"
+              }
+            },
+            {
+              value: "salmon",
+              text: "Salmon and sea trout",
+              label: {
+                classes: "govuk-label--s"
+              },
+              hint: {
+                text: "includes trout and coarse fish"
+              }
+            }
+          ]
+        }) }}
+
+        {% endcall %}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+
+      <div style="border: 10px solid #DEE0E2; background-color: #F8F8F8; padding: 15px; margin-top: 5px;">
+        <div class="govuk-heading-m">How much will this cost?</div>
+        <div class="govuk-body govuk-!-margin-bottom-0">Trout and coarse</div>
+        <div class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-36">£6</div>
+        <div class="govuk-body govuk-!-margin-bottom-0">Salmon and sea trout</div>
+        <div class="govuk-body govuk-!-font-weight-bold govuk-!-font-size-36">£12</div>
+        </div>
+    </div>
+  </div>
+{% endblock %}

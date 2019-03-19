@@ -1,0 +1,216 @@
+
+{% extends "layout.html" %}
+
+{% from "back-link/macro.njk" import govukBackLink %}
+{% from "radios/macro.njk" import govukRadios %}
+{% from "button/macro.njk" import govukButton %}
+{% from "fieldset/macro.njk" import govukFieldset %}
+{% from "details/macro.njk" import govukDetails %}
+
+{% block pageTitle %}
+  GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "/"
+}) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">Check your new licence details</h1>
+
+      {% from "warning-text/macro.njk" import govukWarningText %}
+
+      {{ govukWarningText({
+        text: "Your licence is not valid until payment is complete",
+        iconFallbackText: "Warning"
+      }) }}
+
+      {% from "summary-list/macro.njk" import govukSummaryList %}
+
+
+      <h2 class="govuk-heading-m">Your details</h2>
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Name on licence"
+            },
+            value: {
+              text: "Sarah Philips"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/name",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Date of birth"
+            },
+            value: {
+              text: "5 January 1978"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/date-of-birth",
+                  text: "Change",
+                  visuallyHiddenText: "date of birth"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Email address"
+            },
+            value: {
+              html: "test@test.com"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "email address"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Mobile number"
+            },
+            value: {
+              html: '<p class="govuk-body">07700 900457</p>'
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "mobile number"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Address"
+            },
+            value: {
+              html: '<p class="govuk-body">1 Blah Street</p>'
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "address"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m">Licence details</h2>
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Licence type"
+            },
+            value: {
+              text: "Salmon and sea trout"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/name",
+                  text: "Change",
+                  visuallyHiddenText: "licence type"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Licence length"
+            },
+            value: {
+              text: "1 day"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/licence-length",
+                  text: "Change",
+                  visuallyHiddenText: "licence length"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Valid from"
+            },
+            value: {
+              html: "30 minutes after payment"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "valid from"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Number of rods"
+            },
+            value: {
+              html: '1 rod (or up to 3 rods for coarse fish)'
+            },
+            actions: {
+              items: [
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Cost"
+            },
+            value: {
+              html: '£12'
+            },
+            actions: {
+              items: [
+              ]
+            }
+          }
+        ]
+      }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+
+    </div>
+  </div>
+{% endblock %}
