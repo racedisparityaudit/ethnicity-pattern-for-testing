@@ -48,7 +48,8 @@
               },
               hint: {
                 text: 'Includes any White background'
-              }
+              },
+              checked: data['ethnic-group'] == "White"
             },
             {
               value: "Mixed or multiple ethnic groups",
@@ -58,7 +59,8 @@
               },
               hint: {
                 text: 'Includes White and Black Caribbean, White and Black African, White and Asian or any other Mixed ethnic group'
-              }
+              },
+              checked: data['ethnic-group'] == "Mixed or multiple ethnic groups"
             },
             {
               value: "Asian or Asian British",
@@ -68,7 +70,8 @@
               },
               hint: {
                 text: 'Includes Indian, Pakistani, Bangladeshi, Chinese or any other Asian background'
-              }
+              },
+              checked: data['ethnic-group'] == "Asian or Asian British"
             },
             {
               value: "Black, African, Caribbean or Black British",
@@ -78,7 +81,8 @@
               },
               hint: {
                 text: 'Includes African, Caribbean or any other Black background'
-              }
+              },
+              checked: data['ethnic-group'] == "Black, African, Caribbean or Black British"
             },
             {
               value: "Other",
@@ -88,7 +92,8 @@
               },
               hint: {
                 text: 'For example Arab or any other background'
-              }
+              },
+              checked: data['ethnic-group'] == "Other"
             },
             {
               divider: "or"
@@ -98,7 +103,8 @@
               text: "Prefer not to say",
               label: {
                 classes: ''
-              }
+              },
+              checked: data['ethnic-group'] == "Prefer not to say"
             }
           ]
         }) }}

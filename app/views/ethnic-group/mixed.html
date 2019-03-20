@@ -34,7 +34,8 @@
         classes: "govuk-!-width-one-half",
         label: {
           text: "Other Mixed ethnic group (optional)"
-        }
+        },
+        value: data['ethnicity-other']
       }) }}
       {% endset -%}
 
@@ -52,25 +53,29 @@
           {
             value: "White and Black Caribbean",
             text: "White and Black Caribbean",
-            id: 5
+            id: 5,
+            checked: data['ethnic-group-specific'] == "White and Black Caribbean"
           },
           {
             value: "White and Black African",
             text: "White and Black African",
-            id: 6
+            id: 6,
+            checked: data['ethnic-group-specific'] == "White and Black African"
           },
           {
             value: "White and Asian",
             text: "White and Asian",
-            id: 7
+            id: 7,
+            checked: data['ethnic-group-specific'] == "White and Asian"
           },
           {
-            value: "other",
+            value: "Any other Mixed or multiple ethnic background",
             text: "Any other Mixed or multiple ethnic background",
             id: 8,
             conditional: {
               html: mixedOtherHtml
-            }
+            },
+            checked: data['ethnic-group-specific'] == "Any other Mixed or multiple ethnic background"
           }
         ]
       }) }}

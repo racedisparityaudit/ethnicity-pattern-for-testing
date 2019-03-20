@@ -51,6 +51,18 @@
         {% set ethnicity = ethnicity + ": " + data['ethnic-group-specific'] %}
       {% endif %}
 
+      {% if data['email'] and data['email'] != "" %}
+        {% set email = data['email'] %}
+      {% else %}
+        {% set email = "Not supplied" %}
+      {% endif %}
+
+      {% if data['mobile'] and data['mobile'] != "" %}
+        {% set mobile = data['mobile'] %}
+      {% else %}
+        {% set mobile = "Not supplied" %}
+      {% endif %}
+
       <h2 class="govuk-heading-m">Your details</h2>
       {{ govukSummaryList({
         rows: [
@@ -93,7 +105,7 @@
               text: "Email address"
             },
             value: {
-              html: data['email']
+              html: email
             },
             actions: {
               items: [
@@ -110,7 +122,7 @@
               text: "Mobile number"
             },
             value: {
-              html: '<p class="govuk-body">' + data['mobile'] + '</p>'
+              html: '<p class="govuk-body">' + mobile + '</p>'
             },
             actions: {
               items: [
