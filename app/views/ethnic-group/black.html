@@ -1,0 +1,79 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  GOV.UK Prototype Kit
+{% endblock %}
+
+{% from "back-link/macro.njk" import govukBackLink %}
+
+{% block beforeContent %}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "/ethnic-group"
+  }) }}
+{% endblock %}
+
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/licence-type" method="post">
+      {% from "input/macro.njk" import govukInput %}
+      {% from "fieldset/macro.njk" import govukFieldset %}
+      {% from "radios/macro.njk" import govukRadios %}
+
+      {% set blackOtherHtml %}
+        {{ govukInput({
+          id: "ethnicity-other",
+          name: "ethnicity-other",
+          classes: "govuk-!-width-one-half",
+          label: {
+            text: "Other Black background (optional)"
+          }
+        }) }}
+      {% endset -%}
+
+      {{ govukRadios({
+        idPrefix: "ethnic-group-specific",
+        name: "ethnic-group-specific",
+        fieldset: {
+          legend: {
+            text: "Which one best describes your Black ethnic group or background?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        items: [
+          {
+            value: "African",
+            text: "African",
+            id: 14
+          },
+          {
+            value: "Caribbean",
+            text: "Caribbean",
+            id: 15
+          },
+          {
+            value: "other",
+            text: "Any other Black background",
+            id: 16,
+            conditional: {
+              html: blackOtherHtml
+            }
+          }
+        ]
+      }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+</div>
+
+{% endblock %}

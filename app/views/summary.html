@@ -33,6 +33,23 @@
 
       {% from "summary-list/macro.njk" import govukSummaryList %}
 
+      {% set full_address = data['building-number-or-name'] + ", " + data['address-1'] + ", " + data['address-2'] + ', ' + data['town'] + ', ' + data['country'] %}
+
+      {% set full_name = data['first-name'] + ' ' + data['last-name'] %}
+
+      {% set date_of_birth = data['date-of-birth-year'] + '-' + data['date-of-birth-month'] + '-' + data['date-of-birth-day'] %}
+
+      {% set date_of_birth = date_of_birth | date("D MMMM YYYY") %}
+
+      {% set ethnicity = data['ethnic-group'] %}
+
+      {% if data['ethnic-group'] == "Prefer not to say" %}
+        {% set ethnicity = "Prefer not to say" %}
+      {% elseif data['ethnicity-other'] and data['ethnicity-other'] != '' %}
+        {% set ethnicity = ethnicity + ": " + data['ethnicity-other'] %}
+      {% else %}
+        {% set ethnicity = ethnicity + ": " + data['ethnic-group-specific'] %}
+      {% endif %}
 
       <h2 class="govuk-heading-m">Your details</h2>
       {{ govukSummaryList({
@@ -42,7 +59,7 @@
               text: "Name on licence"
             },
             value: {
-              text: "Sarah Philips"
+              text: full_name
             },
             actions: {
               items: [
@@ -59,7 +76,7 @@
               text: "Date of birth"
             },
             value: {
-              text: "5 January 1978"
+              text: date_of_birth
             },
             actions: {
               items: [
@@ -76,12 +93,12 @@
               text: "Email address"
             },
             value: {
-              html: "test@test.com"
+              html: data['email']
             },
             actions: {
               items: [
                 {
-                  href: "#",
+                  href: "/contact",
                   text: "Change",
                   visuallyHiddenText: "email address"
                 }
@@ -93,12 +110,12 @@
               text: "Mobile number"
             },
             value: {
-              html: '<p class="govuk-body">07700 900457</p>'
+              html: '<p class="govuk-body">' + data['mobile'] + '</p>'
             },
             actions: {
               items: [
                 {
-                  href: "#",
+                  href: "/contact",
                   text: "Change",
                   visuallyHiddenText: "mobile number"
                 }
@@ -110,14 +127,31 @@
               text: "Address"
             },
             value: {
-              html: '<p class="govuk-body">1 Blah Street</p>'
+              html: full_address
             },
             actions: {
               items: [
                 {
-                  href: "#",
+                  href: "/address",
                   text: "Change",
                   visuallyHiddenText: "address"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Ethnic group"
+            },
+            value: {
+              html: ethnicity
+            },
+            actions: {
+              items: [
+                {
+                  href: "/ethnic-group",
+                  text: "Change",
+                  visuallyHiddenText: "ethnic group"
                 }
               ]
             }
@@ -126,6 +160,7 @@
       }) }}
 
       <h2 class="govuk-heading-m">Licence details</h2>
+
       {{ govukSummaryList({
         rows: [
           {
@@ -133,12 +168,12 @@
               text: "Licence type"
             },
             value: {
-              text: "Salmon and sea trout"
+              text: data['licence-type']
             },
             actions: {
               items: [
                 {
-                  href: "/name",
+                  href: "/licence-type",
                   text: "Change",
                   visuallyHiddenText: "licence type"
                 }
@@ -150,7 +185,7 @@
               text: "Licence length"
             },
             value: {
-              text: "1 day"
+              text: data['licence-length']
             },
             actions: {
               items: [
@@ -167,12 +202,12 @@
               text: "Valid from"
             },
             value: {
-              html: "30 minutes after payment"
+              html: data['valid-from']
             },
             actions: {
               items: [
                 {
-                  href: "#",
+                  href: "/start-kind",
                   text: "Change",
                   visuallyHiddenText: "valid from"
                 }

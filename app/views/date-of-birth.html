@@ -35,7 +35,24 @@
             },
           hint: {
             html: "<p class=\"govuk-body\">We use this information to find out if you're eligible for a senior or junior concession.</p><p class=\"govuk-hint\">For example, 23 3 1972</p>"
-          }
+          },
+          items: [
+            {
+              classes: "govuk-input--width-2",
+              name: "day",
+              value: data['date-of-birth-day']
+            },
+            {
+              classes: "govuk-input--width-2",
+              name: "month",
+              value: data['date-of-birth-month']
+            },
+            {
+              classes: "govuk-input--width-4",
+              name: "year",
+              value: data['date-of-birth-year']
+            }
+          ]
         }) }}
 
         {{ govukButton({

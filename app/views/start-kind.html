@@ -23,8 +23,8 @@
       <form action="/licence-type" method="post">
 
         {{ govukRadios({
-          idPrefix: "licence-length",
-          name: "licence-length",
+          idPrefix: "valid-from",
+          name: "valid-from",
           fieldset: {
             legend: {
               text: "When would you like your licence to start?",
@@ -34,11 +34,11 @@
           },
           items: [
             {
-              value: "30-minutes",
+              value: "30 minutes after payment",
               text: "30 minutes after payment"
             },
             {
-              value: "another-time",
+              value: "Another time or date",
               text: "Another time or date"
             }
           ]

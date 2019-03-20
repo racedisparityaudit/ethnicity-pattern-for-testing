@@ -24,6 +24,40 @@
 
       <form action="/summary" method="post">
 
+        {% set emailOrTextHtml %}
+          {{ govukInput({
+            id: "email",
+            name: "email",
+            type: "email",
+            classes: "govuk-input--width-20",
+            label: {
+              text: "Email address"
+            },
+            hint: {
+              text: "For example 'angling@hotmail.com'"
+            },
+            attributes: {
+              spellcheck: "false"
+            }
+          }) }}
+
+          {{ govukInput({
+            id: "mobile",
+            name: "mobile",
+            type: "mobile",
+            classes: "govuk-input--width-20",
+            label: {
+              text: "Text number"
+            },
+            hint: {
+              text: "For example '07700 900 900'"
+            },
+            attributes: {
+              spellcheck: "false"
+            }
+          }) }}
+        {% endset -%}
+
         {% call govukFieldset({
           legend: {
             text: "How can we send you your licence details?",
@@ -39,8 +73,8 @@
         }) }}
 
         {{ govukRadios({
-          idPrefix: "licence-length",
-          name: "licence-length",
+          idPrefix: "contact-method",
+          name: "contact-method",
           fieldset: {
             legend: {
               text: "Choose how we send you your licence details:"
@@ -49,7 +83,10 @@
           items: [
             {
               value: "email",
-              text: "Email or text me my licence details"
+              text: "Email or text me my licence details",
+              conditional: {
+                html: emailOrTextHtml
+              }
             },
             {
               value: "write-down",

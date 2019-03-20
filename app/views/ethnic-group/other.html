@@ -1,0 +1,74 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  GOV.UK Prototype Kit
+{% endblock %}
+
+{% from "back-link/macro.njk" import govukBackLink %}
+
+{% block beforeContent %}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "/ethnic-group"
+  }) }}
+{% endblock %}
+
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/licence-type" method="post">
+      {% from "input/macro.njk" import govukInput %}
+      {% from "fieldset/macro.njk" import govukFieldset %}
+      {% from "radios/macro.njk" import govukRadios %}
+
+      {% set otherOtherHtml %}
+        {{ govukInput({
+          id: "ethnicity-other",
+          name: "ethnicity-other",
+          classes: "govuk-!-width-one-half",
+          label: {
+            text: "Any other ethnic group (optional)"
+          }
+        }) }}
+      {% endset -%}
+
+      {{ govukRadios({
+        idPrefix: "ethnic-group-specific",
+        name: "ethnic-group-specific",
+        fieldset: {
+          legend: {
+            text: "Which one best describes your ethnic group or background?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        items: [
+          {
+            value: "Arab",
+            text: "Arab",
+            id: 17
+          },
+          {
+            value: "other",
+            text: "Any other ethnic group",
+            id: 18,
+            conditional: {
+              html: otherOtherHtml
+            }
+          }
+        ]
+      }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+</div>
+
+{% endblock %}

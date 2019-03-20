@@ -1,0 +1,5 @@
+---
+applications:
+- name: fishing-rod-licence-test
+  memory: 256M
+  buildpack: nodejs_buildpack
