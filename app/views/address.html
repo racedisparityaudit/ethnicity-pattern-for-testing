@@ -64,6 +64,15 @@
           classes: "govuk-input--width-20"
         }) }}
 
+        {{ govukInput({
+          label: {
+            text: "Postcode"
+          },
+          id: "postcode",
+          name: "postcode",
+          classes: "govuk-input--width-20"
+        }) }}
+
         {% from "select/macro.njk" import govukSelect %}
 
         {{ govukSelect({

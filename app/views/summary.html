@@ -34,7 +34,29 @@
 
         {% from "summary-list/macro.njk" import govukSummaryList %}
 
-        {% set full_address = data['building-number-or-name'] + ", " + data['address-1'] + ", " + data['address-2'] + ', ' + data['town'] + ', ' + data['country'] %}
+
+
+        {% set full_address = data['building-number-or-name'] %}
+
+        {% if data['address-1'] and data['address-1'] != "" %}
+          {% set full_address = full_address + ", " + data['address-1'] %}
+        {% endif %}
+
+        {% if data['address-2'] and data['address-2'] != "" %}
+          {% set full_address = full_address + ", " + data['address-2'] %}
+        {% endif %}
+
+        {% if data['town'] and data['town'] != "" %}
+          {% set full_address = full_address + ", " + data['town'] %}
+        {% endif %}
+
+        {% if data['postcode'] and data['postcode'] != "" %}
+          {% set full_address = full_address + ", " + data['postcode'] %}
+        {% endif %}
+
+        {% if data['country'] and data['country'] != "" %}
+          {% set full_address = full_address + ", " + data['country'] %}
+        {% endif %}
 
         {% set full_name = data['first-name'] + ' ' + data['last-name'] %}
 
