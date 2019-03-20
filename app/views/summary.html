@@ -24,240 +24,241 @@
 
       <h1 class="govuk-heading-l">Check your new licence details</h1>
 
-      {% from "warning-text/macro.njk" import govukWarningText %}
+      <form action="/done" method="post">
+        {% from "warning-text/macro.njk" import govukWarningText %}
 
-      {{ govukWarningText({
-        text: "Your licence is not valid until payment is complete",
-        iconFallbackText: "Warning"
-      }) }}
-
-      {% from "summary-list/macro.njk" import govukSummaryList %}
-
-      {% set full_address = data['building-number-or-name'] + ", " + data['address-1'] + ", " + data['address-2'] + ', ' + data['town'] + ', ' + data['country'] %}
-
-      {% set full_name = data['first-name'] + ' ' + data['last-name'] %}
-
-      {% set date_of_birth = data['date-of-birth-year'] + '-' + data['date-of-birth-month'] + '-' + data['date-of-birth-day'] %}
-
-      {% set date_of_birth = date_of_birth | date("D MMMM YYYY") %}
-
-      {% set ethnicity = data['ethnic-group'] %}
-
-      {% if data['ethnic-group'] == "Prefer not to say" %}
-        {% set ethnicity = "Prefer not to say" %}
-      {% elseif data['ethnicity-other'] and data['ethnicity-other'] != '' %}
-        {% set ethnicity = ethnicity + ": " + data['ethnicity-other'] %}
-      {% else %}
-        {% set ethnicity = ethnicity + ": " + data['ethnic-group-specific'] %}
-      {% endif %}
-
-      {% if data['email'] and data['email'] != "" %}
-        {% set email = data['email'] %}
-      {% else %}
-        {% set email = "Not supplied" %}
-      {% endif %}
-
-      {% if data['mobile'] and data['mobile'] != "" %}
-        {% set mobile = data['mobile'] %}
-      {% else %}
-        {% set mobile = "Not supplied" %}
-      {% endif %}
-
-      <h2 class="govuk-heading-m">Your details</h2>
-      {{ govukSummaryList({
-        rows: [
-          {
-            key: {
-              text: "Name on licence"
-            },
-            value: {
-              text: full_name
-            },
-            actions: {
-              items: [
-                {
-                  href: "/name",
-                  text: "Change",
-                  visuallyHiddenText: "name"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Date of birth"
-            },
-            value: {
-              text: date_of_birth
-            },
-            actions: {
-              items: [
-                {
-                  href: "/date-of-birth",
-                  text: "Change",
-                  visuallyHiddenText: "date of birth"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Email address"
-            },
-            value: {
-              html: email
-            },
-            actions: {
-              items: [
-                {
-                  href: "/contact",
-                  text: "Change",
-                  visuallyHiddenText: "email address"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Mobile number"
-            },
-            value: {
-              html: '<p class="govuk-body">' + mobile + '</p>'
-            },
-            actions: {
-              items: [
-                {
-                  href: "/contact",
-                  text: "Change",
-                  visuallyHiddenText: "mobile number"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Address"
-            },
-            value: {
-              html: full_address
-            },
-            actions: {
-              items: [
-                {
-                  href: "/address",
-                  text: "Change",
-                  visuallyHiddenText: "address"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Ethnic group"
-            },
-            value: {
-              html: ethnicity
-            },
-            actions: {
-              items: [
-                {
-                  href: "/ethnic-group",
-                  text: "Change",
-                  visuallyHiddenText: "ethnic group"
-                }
-              ]
-            }
-          }
-        ]
-      }) }}
-
-      <h2 class="govuk-heading-m">Licence details</h2>
-
-      {{ govukSummaryList({
-        rows: [
-          {
-            key: {
-              text: "Licence type"
-            },
-            value: {
-              text: data['licence-type']
-            },
-            actions: {
-              items: [
-                {
-                  href: "/licence-type",
-                  text: "Change",
-                  visuallyHiddenText: "licence type"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Licence length"
-            },
-            value: {
-              text: data['licence-length']
-            },
-            actions: {
-              items: [
-                {
-                  href: "/licence-length",
-                  text: "Change",
-                  visuallyHiddenText: "licence length"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Valid from"
-            },
-            value: {
-              html: data['valid-from']
-            },
-            actions: {
-              items: [
-                {
-                  href: "/start-kind",
-                  text: "Change",
-                  visuallyHiddenText: "valid from"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Number of rods"
-            },
-            value: {
-              html: '1 rod (or up to 3 rods for coarse fish)'
-            },
-            actions: {
-              items: [
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Cost"
-            },
-            value: {
-              html: '£12'
-            },
-            actions: {
-              items: [
-              ]
-            }
-          }
-        ]
-      }) }}
-
-        {{ govukButton({
-          text: "Continue"
+        {{ govukWarningText({
+          text: "Your licence is not valid until payment is complete",
+          iconFallbackText: "Warning"
         }) }}
 
+        {% from "summary-list/macro.njk" import govukSummaryList %}
 
+        {% set full_address = data['building-number-or-name'] + ", " + data['address-1'] + ", " + data['address-2'] + ', ' + data['town'] + ', ' + data['country'] %}
+
+        {% set full_name = data['first-name'] + ' ' + data['last-name'] %}
+
+        {% set date_of_birth = data['date-of-birth-year'] + '-' + data['date-of-birth-month'] + '-' + data['date-of-birth-day'] %}
+
+        {% set date_of_birth = date_of_birth | date("D MMMM YYYY") %}
+
+        {% set ethnicity = data['ethnic-group'] %}
+
+        {% if data['ethnic-group'] == "Prefer not to say" %}
+          {% set ethnicity = "Prefer not to say" %}
+        {% elseif data['ethnicity-other'] and data['ethnicity-other'] != '' %}
+          {% set ethnicity = ethnicity + ": " + data['ethnicity-other'] %}
+        {% else %}
+          {% set ethnicity = ethnicity + ": " + data['ethnic-group-specific'] %}
+        {% endif %}
+
+        {% if data['email'] and data['email'] != "" %}
+          {% set email = data['email'] %}
+        {% else %}
+          {% set email = "Not supplied" %}
+        {% endif %}
+
+        {% if data['mobile'] and data['mobile'] != "" %}
+          {% set mobile = data['mobile'] %}
+        {% else %}
+          {% set mobile = "Not supplied" %}
+        {% endif %}
+
+        <h2 class="govuk-heading-m">Your details</h2>
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "Name on licence"
+              },
+              value: {
+                text: full_name
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/name",
+                    text: "Change",
+                    visuallyHiddenText: "name"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Date of birth"
+              },
+              value: {
+                text: date_of_birth
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/date-of-birth",
+                    text: "Change",
+                    visuallyHiddenText: "date of birth"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Email address"
+              },
+              value: {
+                html: email
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/contact",
+                    text: "Change",
+                    visuallyHiddenText: "email address"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Mobile number"
+              },
+              value: {
+                html: '<p class="govuk-body">' + mobile + '</p>'
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/contact",
+                    text: "Change",
+                    visuallyHiddenText: "mobile number"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Address"
+              },
+              value: {
+                html: full_address
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/address",
+                    text: "Change",
+                    visuallyHiddenText: "address"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Ethnic group"
+              },
+              value: {
+                html: ethnicity
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/ethnic-group",
+                    text: "Change",
+                    visuallyHiddenText: "ethnic group"
+                  }
+                ]
+              }
+            }
+          ]
+        }) }}
+
+        <h2 class="govuk-heading-m">Licence details</h2>
+
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "Licence type"
+              },
+              value: {
+                text: data['licence-type']
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/licence-type",
+                    text: "Change",
+                    visuallyHiddenText: "licence type"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Licence length"
+              },
+              value: {
+                text: data['licence-length']
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/licence-length",
+                    text: "Change",
+                    visuallyHiddenText: "licence length"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Valid from"
+              },
+              value: {
+                html: data['valid-from']
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/start-kind",
+                    text: "Change",
+                    visuallyHiddenText: "valid from"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Number of rods"
+              },
+              value: {
+                html: '1 rod (or up to 3 rods for coarse fish)'
+              },
+              actions: {
+                items: [
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Cost"
+              },
+              value: {
+                html: '£12'
+              },
+              actions: {
+                items: [
+                ]
+              }
+            }
+          ]
+        }) }}
+
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+
+      </form>
     </div>
   </div>
 {% endblock %}
