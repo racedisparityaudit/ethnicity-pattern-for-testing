@@ -32,7 +32,7 @@
         name: "ethnicity-other",
         classes: "govuk-!-width-one-half",
         label: {
-          text: "Other White background (optional)"
+          text: "Your White background (optional)"
         },
         value: data['ethnicity-other']
       }) }}
@@ -43,7 +43,7 @@
         name: "ethnic-group-specific",
         fieldset: {
           legend: {
-            text: "Which one best describes your White ethnic group or background?",
+            text: "Which one best describes your background?",
             isPageHeading: true,
             classes: "govuk-fieldset__legend--l"
           }
@@ -62,8 +62,8 @@
             text: "Gypsy or Irish Traveller",
             checked: data['ethnic-group-specific'] == "Gypsy or Irish Traveller"
           },{
-            value: "Any other White background",
-            text: "Any other White background",
+            value: "Another White background",
+            text: "Another White background",
             conditional: {
               html: whiteOtherHtml
             },

@@ -37,7 +37,7 @@
             }
           },
           hint: {
-            html: "<span style=\"display: block;\" class=\"govuk-body govuk-!-margin-bottom-6\">It’s important to us that everyone applying for a fishing licence gets a fair service. This won’t affect your licence and you don’t have to answer.</span>"
+            html: "<span style=\"display: block;\" class=\"govuk-body govuk-!-margin-bottom-6\">It is important to us that everyone applying for a fishing licence gets a fair service. This will not affect your licence.</span>"
           },
           items: [
             {
@@ -58,7 +58,7 @@
                 classes: 'govuk-label--s'
               },
               hint: {
-                text: 'Includes White and Black Caribbean, White and Black African, White and Asian or any other Mixed ethnic group'
+                text: 'Includes White and Black Caribbean, White and Black African, White and Asian or any other Mixed background'
               },
               checked: data['ethnic-group'] == "Mixed or multiple ethnic groups"
             },
@@ -74,26 +74,26 @@
               checked: data['ethnic-group'] == "Asian or Asian British"
             },
             {
-              value: "Black, African, Caribbean or Black British",
-              text: "Black, African, Caribbean or Black British",
+              value: "Black or Black British",
+              text: "Black or Black British",
               label: {
                 classes: 'govuk-label--s'
               },
               hint: {
                 text: 'Includes African, Caribbean or any other Black background'
               },
-              checked: data['ethnic-group'] == "Black, African, Caribbean or Black British"
+              checked: data['ethnic-group'] == "Black or Black British"
             },
             {
-              value: "Other",
-              text: "Other",
+              value: "Another ethnic group",
+              text: "Another ethnic group",
               label: {
                 classes: 'govuk-label--s'
               },
               hint: {
                 text: 'For example Arab or any other background'
               },
-              checked: data['ethnic-group'] == "Other"
+              checked: data['ethnic-group'] == "Another ethnic group"
             },
             {
               divider: "or"

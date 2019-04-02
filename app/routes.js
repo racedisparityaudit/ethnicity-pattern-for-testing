@@ -14,9 +14,9 @@ router.post('/ethnic-group-choice', function (req, res) {
     res.redirect('/ethnic-group/mixed')
   } else if (ethnicGroup == "Asian or Asian British") {
     res.redirect('/ethnic-group/asian')
-  } else if (ethnicGroup == "Black, African, Caribbean or Black British") {
+  } else if (ethnicGroup == "Black or Black British") {
     res.redirect('/ethnic-group/black')
-  } else if (ethnicGroup == "Other") {
+  } else if (ethnicGroup == "Another ethnic group") {
     res.redirect('/ethnic-group/other')
   } else {
     res.redirect('/ethnic-group/' + ethnicGroup)
