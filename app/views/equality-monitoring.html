@@ -1,0 +1,78 @@
+
+{% extends "layout.html" %}
+
+{% from "back-link/macro.njk" import govukBackLink %}
+
+{% block pageTitle %}
+  GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "/contact"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% from "input/macro.njk" import govukInput %}
+      {% from "fieldset/macro.njk" import govukFieldset %}
+      {% from "radios/macro.njk" import govukRadios %}
+      {% from "details/macro.njk" import govukDetails %}
+
+      <form action="/equality-opt-in" method="post">
+
+        {% from "radios/macro.njk" import govukRadios %}
+
+        <span class="govuk-caption-xl">Equality monitoring</span>
+
+        {% call govukFieldset({
+          legend: {
+            text: "Can we ask for your ethnic group?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        }) %}
+
+        <p class="govuk-body">This will not affect your licence.</p>
+
+        {% from "details/macro.njk" import govukDetails %}
+
+        {{ govukDetails({
+          summaryText: "How this information will be used",
+          text: "The anonymised information will be published on GOV.UK so it can be used in areas such as research and to inform the development of related services."
+        }) }}
+
+          {{ govukRadios({
+            idPrefix: "equality-information",
+            name: "equality-information",
+            items: [
+              {
+                value: "opt-in",
+                text: "Yes"
+              },
+              {
+                value: "opt-out",
+                text: "No"
+              }
+            ]
+          }) }}
+
+        {% endcall %}
+
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+
+      </form>
+
+    </div>
+</div>
+
+{% endblock %}

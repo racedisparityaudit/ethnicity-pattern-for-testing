@@ -11,7 +11,7 @@
 {% block beforeContent %}
   {{ govukBackLink({
   text: "Back",
-  href: "/address"
+  href: "/equality-monitoring"
 }) }}
 {% endblock %}
 
@@ -28,6 +28,8 @@
 
       <form action="/ethnic-group-choice" method="post">
 
+        <span class="govuk-caption-xl">Equality monitoring</span>
+
         {% call govukFieldset({
           legend: {
             text: "What is your ethnic group?",
@@ -35,8 +37,6 @@
             classes: "govuk-fieldset__legend--l"
           }
         }) %}
-
-        <p class="govuk-body">We use this information to check our service is reaching all communities equally. Your response will not affect your licence.</p>
 
         {{ govukDetails({
           summaryText: "How we protect your data",
@@ -102,17 +102,6 @@
                   text: 'For example, Arab or any other background'
                 },
                 checked: data['ethnic-group'] == "Another ethnic group"
-              },
-              {
-                divider: "or"
-              },
-              {
-                value: "Prefer not to say",
-                text: "Prefer not to say",
-                label: {
-                  classes: ''
-                },
-                checked: data['ethnic-group'] == "Prefer not to say"
               }
             ]
           }) }}

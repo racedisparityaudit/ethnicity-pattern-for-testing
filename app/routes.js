@@ -3,6 +3,18 @@ const router = express.Router()
 
 // Add your routes here - above the module.exports line
 
+router.post('/equality-opt-in', function (req, res) {
+
+  let equalityInformation = req.session.data['equality-information']
+
+  if (equalityInformation == 'opt-in') {
+    res.redirect('/ethnic-group')
+  } else {
+    res.redirect('/summary')
+  }
+
+})
+
 router.post('/ethnic-group-choice', function (req, res) {
   let ethnicGroup = req.session.data['ethnic-group']
 
