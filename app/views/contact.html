@@ -37,8 +37,10 @@
               text: "For example 'angling@hotmail.com'"
             },
             attributes: {
-              spellcheck: "false"
+              spellcheck: "false",
+              autocomplete: 'off'
             }
+
           }) }}
 
           {{ govukInput({
@@ -53,7 +55,8 @@
               text: "For example '07700 900 900'"
             },
             attributes: {
-              spellcheck: "false"
+              spellcheck: "false",
+              autocomplete: 'off'
             }
           }) }}
         {% endset -%}
